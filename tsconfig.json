@@ -1,0 +1,9 @@
+{
+"compilerOptions": {
+    "target": "ES6" ,
+    "lib": ["ES7", "DOM"],
+    "module": "CommonJS",
+    "outDir": "",
+    }
+}
+
