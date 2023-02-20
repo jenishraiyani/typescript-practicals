@@ -28,7 +28,7 @@
           <button type="button" class="btn fw-bold">DEG</button>
         </div>
         <div class="col-8">
-          <button type="button" class="btn fw-bold" onclick="fixedToExponent()">F-E</button>
+          <button type="button" class="btn fw-bold"  id="fixedToExponent">F-E</button>
         </div>
         <div class="col">
           <button type="button" class="btn" id="memory-clear" onclick="memoryPlusSubtract()">MC</button>
@@ -37,10 +37,10 @@
           <button type="button" class="btn" id="memory-recall" onclick="memoryRecall()">MR</button>
         </div>
         <div class="col">
-          <button type="button" class="btn fw-bold" id="memory-plus" onclick="memoryPlusSubtract(this.id)">M+</button>
+          <button type="button" class="btn fw-bold" id="memory-plus">M+</button>
         </div>
         <div class="col">
-          <button type="button" class="btn fw-bold"  id="memory-subtract" onclick="memoryPlusSubtract(this.id)">M-</button>
+          <button type="button" class="btn fw-bold"  id="memory-subtract">M-</button>
         </div>
         <div class="col">
           <button type="button" class="btn fw-bold" onclick="memoryStore()">MS</button>
@@ -154,10 +154,10 @@
           <button type="button" class="btn w-100 bg-white" onclick="displayEntry('4')">4</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('5')">5</button>
+          <button type="button" class="btn w-100 bg-white"  class="btn" >5</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('6')">6</button>
+          <button type="button" class="btn w-100 bg-white"  class="btn">6</button>
         </div>
         <div class="col">
           <button type="button" class="btn w-100 btn-light"  onclick="displayEntry('-')"><i class="fa fa-minus"></i></button>
@@ -190,13 +190,14 @@
           <button type="button" class="btn w-100 bg-white" onclick="displayEntry('.')">.</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-primary" onclick="calculator()"><i class="fa-solid fa-equals"></i></button>
+          <button type="button" class="btn w-100 btn-primary" id="calculate"><i class="fa-solid fa-equals"></i></button>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script>var exports = {};</script> 
+  <script  setup lang="ts" type="module" src="/src/app.js"></script>
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

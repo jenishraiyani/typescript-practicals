@@ -1,9 +1,12 @@
 {
 "compilerOptions": {
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "target": "ES6" ,
-    "lib": ["ES7", "DOM"],
-    "module": "CommonJS",
-    "outDir": "",
+    "lib": ["es6", "dom", "es2017"],
+    
     }
 }
 
