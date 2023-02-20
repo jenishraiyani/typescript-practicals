@@ -1,8 +1,8 @@
-let mainScreen:any = document.getElementById("output-screen") as HTMLDivElement;
-let operators = ["%", "+", "-", "*", "/", ".", "^", ".e+0"];
+
 let openParenthesisCounter = 0;
 let closeParenthesisCounter = 0;
-let parenthesis = document.getElementById("parenthesis-counter") as HTMLSpanElement | any;
+import { mainScreen, operators, parenthesis } from "./Variables";
+
 export class Validations{
   
     openParenthesis(){
@@ -34,7 +34,7 @@ export class Validations{
       }
     }
   
-    validateInput(value) {
+    validateInput(value:string) {
       let lastEntry = mainScreen.innerHTML.slice(-1);
       if (operators.includes(value)) {
         if (operators.includes(lastEntry)) {
@@ -46,4 +46,20 @@ export class Validations{
       return true;
     }
      
+    fixedToExponent() {
+      let lastFourEntry = mainScreen.innerHTML.substr(mainScreen.innerHTML.length - 4);
+      let lastEntry = mainScreen.innerHTML.slice(-1);
+      if (lastEntry == ".") {
+          mainScreen.innerHTML += "e+0";
+      }
+      else if (operators.includes(lastEntry)) {
+          mainScreen.innerHTML = mainScreen.innerHTML;
+      }
+      else if (lastFourEntry != ".e+0") {
+          mainScreen.innerHTML += ".e+0";
+      }
+      else {
+          mainScreen.innerHTML = mainScreen.innerHTML;
+      }
+  }
   }

@@ -1,45 +1,44 @@
-let mainScreen = document.getElementById("output-screen");
-let errorMessage = document.getElementById("error-message");
-let memoryClear = document.getElementById("memory-clear");
-let memoryRecallElement = document.getElementById("memory-recall");
-let operators = ["%", "+", "-", "*", "/", ".", "^", ".e+0"];
-let errorMsg = "Please enter valid input";
-let memoryItems = [];
-let localMemory = "calcmemory";
-let openParenthesisCounter = 0;
-let closeParenthesisCounter = 0;
-let parenthesis = document.getElementById("parenthesis-counter");
+import { mainScreen, childScreen, errorMessage, operators, errorMsg, openParenthesisCounter, parenthesis, openParenthesisCount, } from "./Variables.js";
+import { Validations } from "./Validations.js";
+var validate = new Validations();
 export class Calculation {
+    displayOutput(value) {
+        if (isNaN(value) || !isFinite(value)) {
+            this.showError(errorMsg);
+            mainScreen.innerHTML = "0";
+        }
+        else {
+            mainScreen.innerHTML = value;
+        }
+    }
     calculator() {
         try {
             if (mainScreen.innerHTML != "" && !operators.includes(mainScreen.innerHTML.substr(mainScreen.innerHTML.length - 1))) {
                 if (mainScreen.innerHTML.includes("^")) {
                     let findXYSqaure = mainScreen.innerHTML.split("^", 2);
                     childScreen.innerHTML = mainScreen.innerHTML;
-                    displayOutput(Math.pow(findXYSqaure[0], findXYSqaure[1]));
+                    this.displayOutput(Math.pow(findXYSqaure[0], findXYSqaure[1]));
                 }
                 else {
                     childScreen.innerHTML = mainScreen.innerHTML;
                     let count = eval(mainScreen.innerHTML);
-                    displayOutput(count);
+                    this.displayOutput(count);
                 }
             }
             else {
-                //showError(errorMsg);
+                this.showError(errorMsg);
             }
         }
         catch (err) {
-            //showError(errorMsg);
+            this.showError(errorMsg);
         }
     }
-    //Remove all the entry from screen
     allClear() {
         mainScreen.innerHTML = "0";
         childScreen.innerHTML = "";
         parenthesis.innerHTML = "";
-        openParenthesisCounter = 0;
+        openParenthesisCounter;
     }
-    //Remove last entry
     clearEntry() {
         if (mainScreen.innerHTML == "0") {
             childScreen.innerHTML = childScreen.innerHTML.slice(0, -1);
@@ -48,17 +47,17 @@ export class Calculation {
             if (mainScreen.innerHTML.length == 1) {
                 mainScreen.innerHTML = "0";
                 parenthesis.innerHTML = "";
-                openParenthesisCounter = 0;
+                openParenthesisCounter;
             }
             else {
                 let lastEntry = mainScreen.innerHTML.slice(-1);
                 if (lastEntry == "(") {
-                    openParenthesisCounter--;
+                    openParenthesisCount("-");
                     parenthesis.innerHTML = openParenthesisCounter;
                     mainScreen.innerHTML = mainScreen.innerHTML.slice(0, -1);
                 }
                 else if (lastEntry == ")") {
-                    openParenthesisCounter++;
+                    openParenthesisCount("+");
                     parenthesis.innerHTML = openParenthesisCounter;
                     mainScreen.innerHTML = mainScreen.innerHTML.slice(0, -1);
                 }
@@ -101,15 +100,15 @@ export class Calculation {
         }
         else {
             childScreen.innerHTML = `1/(${mainScreen.innerHTML})`;
-            displayOutput(eval(String(1 / mainScreen.innerHTML)));
+            this.displayOutput(eval(String(1 / mainScreen.innerHTML)));
         }
     }
     getAbsoluteValue() {
-        displayOutput(Math.abs(mainScreen.innerHTML));
+        this.displayOutput(Math.abs(mainScreen.innerHTML));
     }
     getModulo() {
         let modulo = "%";
-        if (validateInput(modulo)) {
+        if (validate.validateInput(modulo)) {
             mainScreen.innerHTML += modulo;
         }
     }
@@ -126,42 +125,42 @@ export class Calculation {
                 factorialNumber *= i;
             }
             childScreen.innerHTML = `fact(${mainScreen.innerHTML})`;
-            displayOutput(factorialNumber);
+            this.displayOutput(factorialNumber);
         }
     }
     getPower(clickedId) {
         switch (clickedId) {
             case "findSquare":
                 childScreen.innerHTML = `sqr(${mainScreen.innerHTML})`;
-                displayOutput(Math.pow(mainScreen.innerHTML, 2));
+                this.displayOutput(Math.pow(mainScreen.innerHTML, 2));
                 break;
             case "findXRoot":
                 childScreen.innerHTML = `√(${mainScreen.innerHTML})`;
-                displayOutput(Math.pow(mainScreen.innerHTML, 1 / 2));
+                this.displayOutput(Math.pow(mainScreen.innerHTML, 1 / 2));
                 break;
             case "findTenPower":
                 childScreen.innerHTML = `10^(${mainScreen.innerHTML})`;
-                displayOutput(Math.pow(10, mainScreen.innerHTML));
+                this.displayOutput(Math.pow(10, mainScreen.innerHTML));
                 break;
             case "findXCube":
                 childScreen.innerHTML = `cube(${mainScreen.innerHTML})`;
-                displayOutput(Math.pow(mainScreen.innerHTML, 3));
+                this.displayOutput(Math.pow(mainScreen.innerHTML, 3));
                 break;
             case "findCubeRoot":
                 childScreen.innerHTML = `cuberoot(${mainScreen.innerHTML})`;
-                displayOutput(Math.pow(mainScreen.innerHTML, 1 / 3));
+                this.displayOutput(Math.pow(mainScreen.innerHTML, 1 / 3));
                 break;
             case "findTwoXSquare":
                 childScreen.innerHTML = `2^(${mainScreen.innerHTML})`;
-                displayOutput(Math.pow(2, mainScreen.innerHTML));
+                this.displayOutput(Math.pow(2, mainScreen.innerHTML));
                 break;
             case "findEulerXSquare":
                 childScreen.innerHTML = `e^(${mainScreen.innerHTML})`;
-                displayOutput(Math.pow(Math.E, mainScreen.innerHTML));
+                this.displayOutput(Math.pow(Math.E, mainScreen.innerHTML));
                 break;
             case "findXYSqaure":
                 let exponent = "^";
-                if (validateInput(exponent)) {
+                if (validate.validateInput(exponent)) {
                     mainScreen.innerHTML += exponent;
                 }
                 break;
@@ -171,11 +170,11 @@ export class Calculation {
         switch (clickedId) {
             case "logTenBase":
                 childScreen.innerHTML = `log(${mainScreen.innerHTML})`;
-                displayOutput(Math.log10(mainScreen.innerHTML));
+                this.displayOutput(Math.log10(mainScreen.innerHTML));
                 break;
             case "naturalLogarithm":
                 childScreen.innerHTML = `ln(${mainScreen.innerHTML})`;
-                displayOutput(Math.log(mainScreen.innerHTML));
+                this.displayOutput(Math.log(mainScreen.innerHTML));
                 break;
         }
     }
@@ -185,21 +184,22 @@ export class Calculation {
             mainScreen.innerHTML = mainScreen.innerHTML.slice(1);
         }
         else {
-            mainScreen.innerHTML = mainScreen.innerHTML.slice(0, 0) + "-" + mainScreen.innerHTML.slice(0);
+            mainScreen.innerHTML =
+                mainScreen.innerHTML.slice(0, 0) + "-" + mainScreen.innerHTML.slice(0);
         }
     }
     getMathFunctionValue(clickedId) {
         switch (clickedId) {
             case "rand":
-                displayOutput(Math.random());
+                this.displayOutput(Math.random());
                 break;
             case "floor":
                 childScreen.innerHTML = `floor(${mainScreen.innerHTML})`;
-                displayOutput(Math.floor(mainScreen.innerHTML));
+                this.displayOutput(Math.floor(mainScreen.innerHTML));
                 break;
             case "ceil":
                 childScreen.innerHTML = `ceil(${mainScreen.innerHTML})`;
-                displayOutput(Math.ceil(mainScreen.innerHTML));
+                this.displayOutput(Math.ceil(mainScreen.innerHTML));
                 break;
         }
     }
@@ -207,27 +207,27 @@ export class Calculation {
         switch (clickedId) {
             case "sin":
                 childScreen.innerHTML = `sin(${mainScreen.innerHTML})`;
-                displayOutput(Math.sin(mainScreen.innerHTML));
+                this.displayOutput(Math.sin(mainScreen.innerHTML));
                 break;
             case "cos":
                 childScreen.innerHTML = `cos(${mainScreen.innerHTML})`;
-                displayOutput(Math.cos(mainScreen.innerHTML));
+                this.displayOutput(Math.cos(mainScreen.innerHTML));
                 break;
             case "tan":
                 childScreen.innerHTML = `tan(${mainScreen.innerHTML})`;
-                displayOutput(Math.tan(mainScreen.innerHTML));
+                this.displayOutput(Math.tan(mainScreen.innerHTML));
                 break;
             case "sinh":
                 childScreen.innerHTML = `sinh(${mainScreen.innerHTML})`;
-                displayOutput(Math.sinh(mainScreen.innerHTML));
+                this.displayOutput(Math.sinh(mainScreen.innerHTML));
                 break;
             case "cosh":
                 childScreen.innerHTML = `cosh(${mainScreen.innerHTML})`;
-                displayOutput(Math.cosh(mainScreen.innerHTML));
+                this.displayOutput(Math.cosh(mainScreen.innerHTML));
                 break;
             case "tanh":
                 childScreen.innerHTML = `tanh(${mainScreen.innerHTML})`;
-                displayOutput(Math.tanh(mainScreen.innerHTML));
+                this.displayOutput(Math.tanh(mainScreen.innerHTML));
                 break;
         }
     }
@@ -238,4 +238,3 @@ export class Calculation {
         }, 3000);
     }
 }
-//# sourceMappingURL=Math.js.map

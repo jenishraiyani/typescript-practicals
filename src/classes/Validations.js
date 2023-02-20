@@ -1,15 +1,8 @@
-"use strict";
-exports.__esModule = true;
-exports.Validations = void 0;
-var mainScreen = document.getElementById("output-screen");
-var operators = ["%", "+", "-", "*", "/", ".", "^", ".e+0"];
-var openParenthesisCounter = 0;
-var closeParenthesisCounter = 0;
-var parenthesis = document.getElementById("parenthesis-counter");
-var Validations = /** @class */ (function () {
-    function Validations() {
-    }
-    Validations.prototype.openParenthesis = function () {
+let openParenthesisCounter = 0;
+let closeParenthesisCounter = 0;
+import { mainScreen, operators, parenthesis } from "./Variables.js";
+export class Validations {
+    openParenthesis() {
         if (!isNaN(mainScreen.innerHTML)) {
             mainScreen.innerHTML += "*(";
         }
@@ -18,10 +11,10 @@ var Validations = /** @class */ (function () {
         }
         openParenthesisCounter++;
         parenthesis.innerHTML = openParenthesisCounter;
-    };
-    Validations.prototype.closeParenthesis = function () {
+    }
+    closeParenthesis() {
         if (openParenthesisCounter > 0) {
-            var lastEntry = mainScreen.innerHTML.slice(-1);
+            let lastEntry = mainScreen.innerHTML.slice(-1);
             if (closeParenthesisCounter == 0 && lastEntry == "(") {
                 mainScreen.innerHTML += "0)";
             }
@@ -37,9 +30,9 @@ var Validations = /** @class */ (function () {
                 parenthesis.innerHTML = "";
             }
         }
-    };
-    Validations.prototype.validateInput = function (value) {
-        var lastEntry = mainScreen.innerHTML.slice(-1);
+    }
+    validateInput(value) {
+        let lastEntry = mainScreen.innerHTML.slice(-1);
         if (operators.includes(value)) {
             if (operators.includes(lastEntry)) {
                 return false;
@@ -49,7 +42,21 @@ var Validations = /** @class */ (function () {
             }
         }
         return true;
-    };
-    return Validations;
-}());
-exports.Validations = Validations;
+    }
+    fixedToExponent() {
+        let lastFourEntry = mainScreen.innerHTML.substr(mainScreen.innerHTML.length - 4);
+        let lastEntry = mainScreen.innerHTML.slice(-1);
+        if (lastEntry == ".") {
+            mainScreen.innerHTML += "e+0";
+        }
+        else if (operators.includes(lastEntry)) {
+            mainScreen.innerHTML = mainScreen.innerHTML;
+        }
+        else if (lastFourEntry != ".e+0") {
+            mainScreen.innerHTML += ".e+0";
+        }
+        else {
+            mainScreen.innerHTML = mainScreen.innerHTML;
+        }
+    }
+}

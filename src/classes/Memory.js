@@ -1,22 +1,12 @@
-let mainScreen = document.getElementById("output-screen");
-let errorMessage = document.getElementById("error-message");
-let memoryClear = document.getElementById("memory-clear");
-let memoryRecallElement = document.getElementById("memory-recall");
-let operators = ["%", "+", "-", "*", "/", ".", "^", ".e+0"];
-let errorMsg = "Please enter valid input";
-let memoryItems = [];
-let localMemory = "calcmemory";
-let openParenthesisCounter = 0;
-let closeParenthesisCounter = 0;
-let parenthesis = document.getElementById("parenthesis-counter");
+import { mainScreen, memoryClear, memoryRecallElement, memoryItems, localMemory } from "./Variables.js";
 export class MemoryOperations {
     disableButton() {
         memoryClear.className += " disabled";
         memoryRecallElement.className += " disabled";
     }
     enableButton() {
-        memoryClear.setAttribute("class", "btn");
-        memoryRecallElement.setAttribute("class", "btn");
+        memoryClear.setAttribute("class", "btn memory");
+        memoryRecallElement.setAttribute("class", "btn memory");
     }
     getMemoryItem() {
         let storedMemoryData = JSON.parse(localStorage.getItem(localMemory));
@@ -25,7 +15,6 @@ export class MemoryOperations {
     setMemoryItem(storedMemoryData) {
         localStorage.setItem(localMemory, JSON.stringify(storedMemoryData));
     }
-    //Memory Operations Start
     memoryStore() {
         let storedMemoryData = this.getMemoryItem();
         if (mainScreen.innerHTML != "" && !isNaN(mainScreen.innerHTML)) {
@@ -52,12 +41,12 @@ export class MemoryOperations {
                     let subtract = "-";
                     this.memoryPlusSub(subtract);
                     break;
-                default:
-                    localStorage.removeItem(localMemory);
-                    this.checkMemory();
-                    break;
             }
         }
+    }
+    memoryClear() {
+        localStorage.removeItem(localMemory);
+        this.checkMemory();
     }
     memoryPlusSub(operators) {
         let storedMemoryData = this.getMemoryItem();
@@ -94,4 +83,3 @@ export class MemoryOperations {
         }
     }
 }
-//# sourceMappingURL=Memory.js.map

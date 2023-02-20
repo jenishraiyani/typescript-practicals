@@ -28,22 +28,22 @@
           <button type="button" class="btn fw-bold">DEG</button>
         </div>
         <div class="col-8">
-          <button type="button" class="btn fw-bold"  id="fixedToExponent">F-E</button>
+          <button type="button" class="btn fw-bold math-function" value="exponent">F-E</button>
         </div>
         <div class="col">
-          <button type="button" class="btn" id="memory-clear" onclick="memoryPlusSubtract()">MC</button>
+          <button type="button" class="btn memory" id="memory-clear">MC</button>
         </div>
         <div class="col">
-          <button type="button" class="btn" id="memory-recall" onclick="memoryRecall()">MR</button>
+          <button type="button" class="btn memory" id="memory-recall">MR</button>
         </div>
         <div class="col">
-          <button type="button" class="btn fw-bold" id="memory-plus">M+</button>
+          <button type="button" class="btn fw-bold memory" id="memory-plus">M+</button>
         </div>
         <div class="col">
-          <button type="button" class="btn fw-bold"  id="memory-subtract">M-</button>
+          <button type="button" class="btn fw-bold memory" id="memory-subtract">M-</button>
         </div>
         <div class="col">
-          <button type="button" class="btn fw-bold" onclick="memoryStore()">MS</button>
+          <button type="button" class="btn fw-bold memory" id="memory-store">MS</button>
         </div>
         <div class="col-6">
           <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,12 +52,11 @@
           </button>
           <ul class="dropdown-menu p-2 " aria-labelledby="btnGroupDrop1">
            <div class="row row-cols-3 g-0">
-              <li><button type="button" class="btn w-75 btn-secondary mb-2" id="sin" onclick="getTrigonometryValue(this.id)">sin</button></li>
-              <li><button type="button" class="btn w-75 btn-secondary" id="cos" onclick="getTrigonometryValue(this.id)">cos</button></li>
-              <li><button type="button" class="btn w-75 btn-secondary" id="tan" onclick="getTrigonometryValue(this.id)">tan</button></li>
-              <li><button type="button" class="btn w-75 btn-secondary" id="sinh" onclick="getTrigonometryValue(this.id)">sinh</button></li>
-              <li><button type="button" class="btn w-75 btn-secondary" id="cosh" onclick="getTrigonometryValue(this.id)">cosh</button></li>
-              <li><button type="button" class="btn w-75 btn-secondary" id="tanh" onclick="getTrigonometryValue(this.id)">tanh</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="cos"  value="trigonometry">cos</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="tan"  value="trigonometry">tan</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="sinh" value="trigonometry">sinh</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="cosh" value="trigonometry">cosh</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="tanh" value="trigonometry">tanh</button></li>
            </div>
           </ul>
         </div>
@@ -69,10 +68,10 @@
             </button>
             <ul class="dropdown-menu p-2" aria-labelledby="btnGroupDrop1">
               <div class="row row-cols-2 g-0">
-                <li><button type="button" class="btn w-75 btn-secondary mb-2" onclick="getAbsoluteValue()">|x|</button></li>
-                <li><button type="button" class="btn w-75 btn-secondary" id="rand" onclick="getMathFunctionValue(this.id)">rand</button></li>
-                <li><button type="button" class="btn w-75 btn-secondary" id="floor" onclick="getMathFunctionValue(this.id)">⌊x⌋</button></li> 
-                <li><button type="button" class="btn w-75 btn-secondary" id="ceil" onclick="getMathFunctionValue(this.id)">⌈x⌉</button></li> 
+                <li><button type="button" class="btn w-75 btn-secondary mb-2 math-function" value="absolute">|x|</button></li>
+                <li><button type="button" class="btn w-75 btn-secondary math-function" id="rand" value="mathvalue">rand</button></li>
+                <li><button type="button" class="btn w-75 btn-secondary math-function" id="floor" value="mathvalue">⌊x⌋</button></li> 
+                <li><button type="button" class="btn w-75 btn-secondary math-function" id="ceil" value="mathvalue">⌈x⌉</button></li> 
               </div>
             </ul>
           </div>
@@ -82,112 +81,112 @@
             2<sup>nd</sup>
           </button>
           <ul class="dropdown-menu p-2" aria-labelledby="btnGroupDrop1">
-            <li><button type="button" class="btn w-100 btn-light mb-2" onclick="getPower(this.id)" id="findXCube">x<sup>3</sup></button></li>
-            <li><button type="button" class="btn w-100 btn-light mb-2" onclick="getPower(this.id)" id="findCubeRoot"> 3<i class="fa-solid fa-square-root-variable"></i></button></li>
-            <li><button type="button" class="btn w-100 btn-light mb-2" onclick="getPower(this.id)" id="findTwoXSquare">2<sup>x</sup></button></li>
-            <li><button type="button" class="btn w-100 btn-light mb-2" onclick="getPower(this.id)" id="findEulerXSquare">e<sup>x</sup></button></li>
+            <li><button type="button" class="btn w-100 btn-light mb-2 math-function" id="findXCube" value="getPower">x<sup>3</sup></button></li>
+            <li><button type="button" class="btn w-100 btn-light mb-2 math-function" id="findCubeRoot" value="getPower"> 3<i class="fa-solid fa-square-root-variable"></i></button></li>
+            <li><button type="button" class="btn w-100 btn-light mb-2 math-function" id="findTwoXSquare" value="getPower">2<sup>x</sup></button></li>
+            <li><button type="button" class="btn w-100 btn-light mb-2 math-function" id="findEulerXSquare" value="getPower">e<sup>x</sup></button></li>
           </ul>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getConstant(this.id)" id="PI">&#960;</button>
+          <button type="button" class="btn w-100 btn-light math-function" id="PI" value="constant">&#960;</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getConstant(this.id)" id="Euler">e</button>
+          <button type="button" class="btn w-100 btn-light math-function" id="Euler" value="constant">e</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="allClear()">C</button>
+          <button type="button" class="btn w-100 btn-light" id="clear-all">C</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="clearEntry()">
+          <button type="button" class="btn w-100 btn-light" id="clear-entry">
             <img src="https://img.icons8.com/material-outlined/24/null/clear-symbol--v1.png" />
           </button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getPower(this.id)" id="findSquare">x<sup>2</sup></button>
+          <button type="button" class="btn w-100 btn-light math-function" id="findSquare" value="getPower">x<sup>2</sup></button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getDerivative()">1/x</button>
+          <button type="button" class="btn w-100 btn-light math-function" value="derivative">1/x</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getAbsoluteValue()">|x|</button>
+          <button type="button" class="btn w-100 btn-light math-function" value="absolute">|x|</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="fixedToExponent()">exp</button>
+          <button type="button" class="btn w-100 btn-light math-function" value="exponent">exp</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getModulo()">mod</button>
+          <button type="button" class="btn w-100 btn-light  math-function" value="modulo">mod</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getPower(this.id)" id="findXRoot"> 2<i class="fa-solid fa-square-root-variable"></i></button>
+          <button type="button" class="btn w-100 btn-light math-function" id="findXRoot" value="getPower"> 2<i class="fa-solid fa-square-root-variable"></i></button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="openParenthesis('(')"><span id="parenthesis-counter"></span>(</button>
+          <button type="button" class="btn w-100 btn-light parenthesis" value="("><span id="parenthesis-counter"></span>(</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="closeParenthesis(')')">)</button>
+          <button type="button" class="btn w-100 btn-light parenthesis" value=")">)</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getFactorial()"><em>n</em>!</button>
+          <button type="button" class="btn w-100 btn-light math-function" value="factorial"><em>n</em>!</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="displayEntry('/')"> <i class="fa-solid fa-divide"></i> </button>
+          <button type="button" class="btn w-100 btn-light display-entry" value="/"> <i class="fa-solid fa-divide"></i> </button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getPower(this.id)" id="findXYSqaure">x<sup>y</sup></button>
+          <button type="button" class="btn w-100 btn-light math-function" id="findXYSqaure" value="getPower">x<sup>y</sup></button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('7')">7</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="7">7</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('8')">8</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="8">8</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('9')">9</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="9">9</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light"  onclick="displayEntry('*')"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <button type="button" class="btn w-100 btn-light display-entry" value="*"><i class="fa fa-times" aria-hidden="true"></i></button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getPower(this.id)" id="findTenPower">10<sup>x</sup></button>
+          <button type="button" class="btn w-100 btn-light math-function" id="findTenPower" value="getPower">10<sup>x</sup></button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('4')">4</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="4">4</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white"  class="btn" >5</button>
+          <button type="button" class="btn w-100 bg-white display-entry"  value="5">5</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white"  class="btn">6</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="6">6</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light"  onclick="displayEntry('-')"><i class="fa fa-minus"></i></button>
+          <button type="button" class="btn w-100 btn-light display-entry" value="-"><i class="fa fa-minus" ></i></button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getLog(this.id)" id="logTenBase">log</button>
+          <button type="button" class="btn w-100 btn-light math-function" id="logTenBase" value="log">log</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('1')">1</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="1">1</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('2')">2</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="2">2</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('3')">3</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="3">3</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="displayEntry('+')"><i class="fa fa-plus"></i></button>
+          <button type="button" class="btn w-100 btn-light display-entry" value="+"><i class="fa fa-plus"></i></button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 btn-light" onclick="getLog(this.id)" id="naturalLogarithm">ln</button>
+          <button type="button" class="btn w-100 btn-light math-function" id="naturalLogarithm" value="log">ln</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="setPlusMinus()">+/-</button>
+          <button type="button" class="btn w-100 bg-white math-function" value="plusminus">+/-</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('0')">0</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value="0">0</button>
         </div>
         <div class="col">
-          <button type="button" class="btn w-100 bg-white" onclick="displayEntry('.')">.</button>
+          <button type="button" class="btn w-100 bg-white display-entry" value=".">.</button>
         </div>
         <div class="col">
           <button type="button" class="btn w-100 btn-primary" id="calculate"><i class="fa-solid fa-equals"></i></button>
@@ -196,8 +195,7 @@
     </div>
   </div>
 
-  <script>var exports = {};</script> 
-  <script  setup lang="ts" type="module" src="/src/app.js"></script>
+  <script  type="module" src="/src/app.js"></script>
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

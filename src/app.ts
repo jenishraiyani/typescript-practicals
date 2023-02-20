@@ -1,81 +1,127 @@
-let mainScreen:any = document.getElementById("output-screen") as HTMLDivElement;
-let errorMessage = document.getElementById("error-message") as HTMLDivElement;
-let memoryClear = document.getElementById("memory-clear") as HTMLElement;
-let memoryRecallElement = document.getElementById("memory-recall") as HTMLElement;
-let operators = ["%", "+", "-", "*", "/", ".", "^", ".e+0"];
-let errorMsg = "Please enter valid input";
-let memoryItems:any = [];
-let localMemory:string = "calcmemory";
-let openParenthesisCounter = 0;
-let closeParenthesisCounter = 0;
-let parenthesis = document.getElementById("parenthesis-counter") as HTMLSpanElement | any;
-
+import { mainScreen, operators } from "./classes/Variables";
 import { Validations } from "./classes/Validations";
-var validate = new Validations();
-/*
 import { Calculation } from "./classes/Math";
-import { Validations } from "./classes/Validations";
 import { MemoryOperations } from "./classes/Memory";
 
-var memory = new MemoryOperations();
-var validate = new Validations();
-var calculate = new Calculation();
-memory.checkMemory();
+// Button List
+let numbers = document.querySelectorAll('.display-entry');
+let parenthesis = document.querySelectorAll('.parenthesis');
+let mathOperations = document.querySelectorAll('.math-function');
+let memoryOperations = document.querySelectorAll('.memory');
 
-document.getElementById("calculate").addEventListener("click", function() {
-  calculate.calculator();
-});
-function memoryFunction(clickedId){
-  if(clickedId == "memory-recall"){
-    memory.memoryRecall();
-  }
+//Class Objects
+let validate = new Validations();
+let math = new Calculation();
+let memoryOperation = new MemoryOperations();
+memoryOperation.checkMemory();
 
-}*/
-
-
-
-
-
-function displayEntry(value) {
-console.log("ss");
+function displayEntry(value: string) {
   let lastEntry = mainScreen.innerHTML.slice(-1);
   if (mainScreen.innerHTML == "0" && value != ".") {
     operators.includes(value) ? mainScreen.innerHTML += value : mainScreen.innerHTML = value;
   } else if (mainScreen.innerHTML.substr(mainScreen.innerHTML.length - 4) == ".e+0") {
-    operators.includes(value) ? mainScreen.innerHTML = mainScreen.innerHTML : 
-    mainScreen.innerHTML = mainScreen.innerHTML.slice(0, -1) + value;
-  } else if(Number(mainScreen.innerHTML) == Math.PI || Number(mainScreen.innerHTML) == Math.E){
-    operators.includes(value) ? mainScreen.innerHTML += value : 
-    mainScreen.innerHTML = value;
-  } else if(lastEntry == "("){
-   validate.validateInput(value) && mainScreen.innerHTML != "" ? mainScreen.innerHTML += "0"+ value :  
-    mainScreen.innerHTML = mainScreen.innerHTML.slice(0, -1) + value;
+    operators.includes(value) ? mainScreen.innerHTML = mainScreen.innerHTML :
+      mainScreen.innerHTML = mainScreen.innerHTML.slice(0, -1) + value;
+  } else if (Number(mainScreen.innerHTML) == Math.PI || Number(mainScreen.innerHTML) == Math.E) {
+    operators.includes(value) ? mainScreen.innerHTML += value :
+      mainScreen.innerHTML = value;
+  } else if (lastEntry == "(") {
+    validate.validateInput(value) && mainScreen.innerHTML != "" ? mainScreen.innerHTML += "0" + value :
+      mainScreen.innerHTML = mainScreen.innerHTML.slice(0, -1) + value;
   } else {
-    validate.validateInput(value) && mainScreen.innerHTML != "" ? mainScreen.innerHTML += value :  
-    mainScreen.innerHTML = mainScreen.innerHTML.slice(0, -1) + value;
+    validate.validateInput(value) && mainScreen.innerHTML != "" ? mainScreen.innerHTML += value :
+      mainScreen.innerHTML = mainScreen.innerHTML.slice(0, -1) + value;
   }
 }
 
-
-
-function displayOutput(value){
-  if(isNaN(value) || !isFinite(value)){
-    //showError(errorMsg);
-    mainScreen.innerHTML = "0";
-  }else{
-    mainScreen.innerHTML = value;
-  }
+for (let elements of numbers) {
+  elements.addEventListener('click', function (this: any, event) {
+    displayEntry(this.value);
+  });
 }
 
-document.getElementById("fixedToExponent").addEventListener("click", function(event) {
-  //calculate.fixedToExponent();
-}, false);
+for (let elements of parenthesis) {
+  elements.addEventListener('click', function (this: any, event) {
+    if (this.value == '(') {
+      validate.openParenthesis();
+    } else {
+      validate.closeParenthesis();
+    }
+  });
+}
 
-document.getElementById("fixedToExponent").addEventListener("click", function(event) {
-  //calculate.fixedToExponent();
-}, false);
+for (let elements of memoryOperations) {
+  elements.addEventListener('click', function (this: any, event) {
+    let memoryFunction = this.id;
+    switch (memoryFunction) {
+      case "memory-clear":
+        memoryOperation.memoryClear();
+        break;
+      case "memory-recall":
+        memoryOperation.memoryRecall();
+        break;
+      case "memory-plus":
+        memoryOperation.memoryPlusSubtract(this.id);
+        break;
+      case "memory-subtract":
+        memoryOperation.memoryPlusSubtract(this.id);
+        break;
+      case "memory-store":
+        memoryOperation.memoryStore();
+        break;
+    }
+  });
+}
 
+for (let elements of mathOperations) {
+  elements.addEventListener('click', function (this: any, event) {
+    let mathFunction = this.value;
+    switch (mathFunction) {
+      case "exponent":
+        math.fixedToExponent();
+        break;
+      case "derivative":
+        math.getDerivative();
+        break;
+      case "absolute":
+        math.getAbsoluteValue();
+        break;
+      case "mathvalue":
+        math.getMathFunctionValue(this.id);
+        break;
+      case "constant":
+        math.getConstant(this.id);
+        break;
+      case "modulo":
+        math.getModulo();
+        break;
+      case "factorial":
+        math.getFactorial();
+        break;
+      case "log":
+        math.getLog(this.id);
+        break;
+      case "plusminus":
+        math.setPlusMinus();
+        break;
+      case "trigonometry":
+        math.getTrigonometryValue(this.id);
+        break;
+      case "getPower":
+        math.getPower(this.id);
+        break;
+    }
+  });
+}
 
-document.querySelector(".btn").addEventListener("click", function(event) {
-  displayEntry(this.innerHTML);
-}, false);
+document.getElementById("calculate").addEventListener('click', function (this: any, event) {
+  math.calculator();
+});
+
+document.getElementById("clear-all").addEventListener('click', function (this: any, event) {
+  math.allClear();
+});
+
+document.getElementById("clear-entry").addEventListener('click', function (this: any, event) {
+  math.clearEntry();
+});
