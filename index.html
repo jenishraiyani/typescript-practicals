@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+  <!-- External CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Scientific Calculator</title>
+</head>
+
+<body>
+  <div class="message d-flex justify-content-end mt-3 me-2" id="error-message">
+       
+  </div>
+  <div class="container">
+    <div class="calculator-body mx-auto my-auto w-100 p-2 d-grid border border-dark">
+      <div class="display text-end fw-bold p-2 text-break">
+        <div class="user-input" id="child-screen"></div>
+        <div class="output " id="output-screen">0</div>
+      </div>
+      <div class="row row-cols-5 g-1 mt-1">
+        <div class="col">
+          <button type="button" class="btn fw-bold">DEG</button>
+        </div>
+        <div class="col-8">
+          <button type="button" class="btn fw-bold math-function" value="exponent">F-E</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn memory" id="memory-clear">MC</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn memory" id="memory-recall">MR</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn fw-bold memory" id="memory-plus">M+</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn fw-bold memory" id="memory-subtract">M-</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn fw-bold memory" id="memory-store">MS</button>
+        </div>
+        <div class="col-6">
+          <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://img.icons8.com/ios-glyphs/30/null/trigonometry.png " />
+            Trigonometry
+          </button>
+          <ul class="dropdown-menu p-2 " aria-labelledby="btnGroupDrop1">
+           <div class="row row-cols-3 g-0">
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="cos"  value="trigonometry">cos</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="tan"  value="trigonometry">tan</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="sinh" value="trigonometry">sinh</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="cosh" value="trigonometry">cosh</button></li>
+              <li><button type="button" class="btn w-75 btn-secondary math-function" id="tanh" value="trigonometry">tanh</button></li>
+           </div>
+          </ul>
+        </div>
+        <div class="col-6">
+          <div class="dropdown">
+            <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://img.icons8.com/ios-glyphs/30/null/frequency-f.png" />
+              Function
+            </button>
+            <ul class="dropdown-menu p-2" aria-labelledby="btnGroupDrop1">
+              <div class="row row-cols-2 g-0">
+                <li><button type="button" class="btn w-75 btn-secondary mb-2 math-function" value="absolute">|x|</button></li>
+                <li><button type="button" class="btn w-75 btn-secondary math-function" id="rand" value="mathvalue">rand</button></li>
+                <li><button type="button" class="btn w-75 btn-secondary math-function" id="floor" value="mathvalue">⌊x⌋</button></li> 
+                <li><button type="button" class="btn w-75 btn-secondary math-function" id="ceil" value="mathvalue">⌈x⌉</button></li> 
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <button id="btnGroupDrop1" type="button" class="btn w-100 btn-light" data-bs-toggle="dropdown" aria-expanded="false">
+            2<sup>nd</sup>
+          </button>
+          <ul class="dropdown-menu p-2" aria-labelledby="btnGroupDrop1">
+            <li><button type="button" class="btn w-100 btn-light mb-2 math-function" id="findXCube" value="getPower">x<sup>3</sup></button></li>
+            <li><button type="button" class="btn w-100 btn-light mb-2 math-function" id="findCubeRoot" value="getPower"> 3<i class="fa-solid fa-square-root-variable"></i></button></li>
+            <li><button type="button" class="btn w-100 btn-light mb-2 math-function" id="findTwoXSquare" value="getPower">2<sup>x</sup></button></li>
+            <li><button type="button" class="btn w-100 btn-light mb-2 math-function" id="findEulerXSquare" value="getPower">e<sup>x</sup></button></li>
+          </ul>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" id="PI" value="constant">&#960;</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" id="Euler" value="constant">e</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light" id="clear-all">C</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light" id="clear-entry">
+            <img src="https://img.icons8.com/material-outlined/24/null/clear-symbol--v1.png" />
+          </button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" id="findSquare" value="getPower">x<sup>2</sup></button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" value="derivative">1/x</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" value="absolute">|x|</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" value="exponent">exp</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light  math-function" value="modulo">mod</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" id="findXRoot" value="getPower"> 2<i class="fa-solid fa-square-root-variable"></i></button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light parenthesis" value="("><span id="parenthesis-counter"></span>(</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light parenthesis" value=")">)</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" value="factorial"><em>n</em>!</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light display-entry" value="/"> <i class="fa-solid fa-divide"></i> </button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" id="findXYSqaure" value="getPower">x<sup>y</sup></button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="7">7</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="8">8</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="9">9</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light display-entry" value="*"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" id="findTenPower" value="getPower">10<sup>x</sup></button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="4">4</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry"  value="5">5</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="6">6</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light display-entry" value="-"><i class="fa fa-minus" ></i></button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" id="logTenBase" value="log">log</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="1">1</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="2">2</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="3">3</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light display-entry" value="+"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-light math-function" id="naturalLogarithm" value="log">ln</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white math-function" value="plusminus">+/-</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value="0">0</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 bg-white display-entry" value=".">.</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn w-100 btn-primary" id="calculate"><i class="fa-solid fa-equals"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script  type="module" src="/src/app.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
